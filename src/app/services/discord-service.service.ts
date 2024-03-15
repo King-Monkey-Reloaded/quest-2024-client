@@ -14,11 +14,9 @@ export class DiscordServiceService {
       .set('client_secret', environment.DISCORD_CLIENT_SECRET)
       .set('grant_type', 'authorization_code')
       .set('code', code)
-      .set('redirect_uri', environment.DISCORD_REDIRECT_URI);
+      .set('redirect_uri', 'http://localhost:4200/api/auth/discord/redirect');
 
-    const headers = new HttpHeaders()
-      .set('Content-Type', 'application/x-www-form-urlencoded')
-      // .set('Accept-Encoding', 'application/x-www-form-urlencoded');
+      const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
 
     return this.http.post('https://discord.com/api/oauth2/token', params.toString(), {headers});
   }
@@ -33,14 +31,14 @@ export class DiscordServiceService {
   }
 
   async getUserGuilds(accessToken:string){
-
+    console.log(accessToken)
     
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${accessToken}`,
       'Content-Type': 'application/json' // Add any other headers you need
     });
 
-    return this.http.get('https://discord.com/users/@me/guilds', { headers });
+    return this.http.get('https://discord.com/api/users/@me/guilds', { headers });
   }
 }
 

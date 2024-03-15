@@ -27,20 +27,19 @@ export class Test1Component {
         (await this.discService.getUserDetails(obj.access_token)).subscribe({
           next:async (res)=>{
             console.log(res);
-            (await (this.discService.getUserGuilds(obj.access_token))).subscribe({
-              next:(res)=>{
-                console.log(res);
-              }, 
-              error:(resErr)=>{
-                console.log(resErr);
-              }
-            });
           }, 
           error:(resErr)=>{
             console.log(resErr);
           }
         });
-        
+        (await (this.discService.getUserGuilds(obj.access_token))).subscribe({
+          next:(res)=>{
+            console.log(res);
+          }, 
+          error:(resErr)=>{
+            console.log(resErr);
+          }
+        });
         
       },
       error:(resErr)=>{
