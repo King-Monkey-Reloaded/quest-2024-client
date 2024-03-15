@@ -38,7 +38,7 @@ export class DiscordServiceService {
       'Content-Type': 'application/json' // Add any other headers you need
     });
 
-    return this.http.get('https://discord.com/api/users/@me/guilds', { headers });
+    return this.http.get('https://discord.com/api/users/@me/guilds/1138939495882965074/member', { headers });
   }
 }
 
