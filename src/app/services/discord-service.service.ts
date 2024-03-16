@@ -5,7 +5,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class DiscordServiceService {
-
+  serverID:string = '1138939495882965074'
   constructor(private http: HttpClient) { }
 
   async access_token(code: string){
@@ -38,7 +38,7 @@ export class DiscordServiceService {
       'Content-Type': 'application/json' // Add any other headers you need
     });
 
-    return this.http.get('https://discord.com/api/users/@me/guilds', { headers });
+    return this.http.get('https://discord.com/api/users/@me/guilds/'+this.serverID+'/member', { headers });
   }
 }
 

@@ -10,6 +10,7 @@ import { DiscordServiceService } from '../../services/discord-service.service';
 })
 export class Test1Component {
   codeParam!: string | null;
+  isAdmin!: boolean;
   constructor(private route: ActivatedRoute, private discService: DiscordServiceService){}
 
   async ngOnInit() {
@@ -35,6 +36,12 @@ export class Test1Component {
         (await (this.discService.getUserGuilds(obj.access_token))).subscribe({
           next:(res)=>{
             console.log(res);
+            let aux = res as any;
+            if(aux.roles.includes('1218079498831134780')){
+              this.isAdmin = true
+            }else{
+              this.isAdmin = false
+            }
           }, 
           error:(resErr)=>{
             console.log(resErr);
