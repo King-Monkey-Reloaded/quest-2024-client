@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DiscordServiceService } from '@services/discord-service.service';
 import { TokenResponse } from '../../../models/interfaces/interfaces.discord';
 import {Router} from "@angular/router"
+import { encrypt } from '@shared/encrypt';
 @Component({
   selector: 'app-redirect',
   standalone: true,
@@ -14,6 +15,7 @@ export class RedirectComponent {
   code!: string | null;
   isAdmin: boolean = false;
   token_response!:TokenResponse;
+  encryptedToken:string = '';
 
   id_role: string = '1218079498831134780';
 
@@ -33,7 +35,7 @@ export class RedirectComponent {
 
     await this.getTokenAccess(this.code);
     console.log(this.token_response);
-
+    let x = encrypt(this.token_response.access_token, 12);
     if(await this.getRole(this.token_response.access_token)){
       this.router.navigate(['/panel'])
     }
@@ -47,7 +49,9 @@ export class RedirectComponent {
     try {
       const res = await (await this.discService.access_token(code)).toPromise();
       this.token_response = res as TokenResponse;
+      this.encryptedToken = encrypt(this.token_response.access_token, 12);
       console.log(this.token_response);
+      console.log(this.encryptedToken);
     } catch (error) {
         console.error(error);
     }
@@ -71,5 +75,5 @@ export class RedirectComponent {
             }
         });
     });
-}
+  }
 }
