@@ -7,10 +7,10 @@ import { UserHomeComponent } from '@pages/user/user-home/user-home.component';
 import { AdminComponent } from '@pages/admin/admin.component';
 
 export const routes: Routes = [
-    {path: 'welcome', component: WelcomeComponent}, 
-    {path:'auth/discord/login', component: DiscordloginComponent},
-    {path:'api/auth/discord/redirect', component: RedirectComponent},
-    {path:'home', component: UserHomeComponent},
-    {path: 'panel', component: AdminComponent},
-    {path:'', redirectTo:'/welcome', pathMatch:'full'},
+  { path: 'welcome', component: WelcomeComponent },
+  { path: 'auth/discord/login', component: DiscordloginComponent },
+  { path: 'api/auth/discord/redirect', component: RedirectComponent },
+  { path: 'home', component: UserHomeComponent },
+  { path: 'panel', component: AdminComponent },
+  { path: '', redirectTo: '/welcome', pathMatch: 'full' },
 ];
