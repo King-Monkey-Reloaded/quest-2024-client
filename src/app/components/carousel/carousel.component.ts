@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { TicketComponent } from '../ticket/ticket.component';
+import { JoinedCarouselComponent } from '../joined-carousel/joined-carousel.component';
+import { NewCarouselComponent } from '../new-carousel/new-carousel.component';
 
 @Component({
   selector: 'CarouselComponent',
   standalone: true,
-  imports: [TicketComponent],
+  imports: [JoinedCarouselComponent, NewCarouselComponent],
   templateUrl: './carousel.component.html',
   styleUrl: './carousel.component.css'
 })
